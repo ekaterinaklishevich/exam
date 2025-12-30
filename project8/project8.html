@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event-driven programming: CSS changing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+         body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background: url(../svg/line_light.svg), linear-gradient(to bottom, rgba(237, 229, 240, 0.5), #FFFFFF);
+            background-repeat: no-repeat, no-repeat;
+            background-position: top left 220px, top;
+        }
+        
+        #hello {
+            color: #232340;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            transition: color 0.2s;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 25px;
+        }
+        
+        button {
+            width: 180px;
+            height: 64px;
+            background-color: #5468E7;
+            color: #FFFFFF;
+            font-size: 18px;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+            border: none;
+            border-radius: 45px;
+            cursor: pointer;
+        }
+        button:hover {
+            transform: scale(1.1); 
+        }
+        .back {
+            position: fixed;
+            padding: 30px;
+            top: 15px;
+            left: 15px;
+            transition: transform 0.2s;
+            transform: rotate(180deg);
+            font-size: 12px;
+            box-shadow: none;
+            background-color: transparent;
+        }
+        .back:hover {
+            transform: rotate(180deg) scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back"><img src="../svg/arrow_blue.svg"></a>
+
+    <h1 id="hello">Hello!</h1>
+    
+    <div class="buttons">
+        <button id="red">Red</button>
+        <button id="blue">Blue</button>
+        <button id="green">Green</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            document.querySelector('#red').onclick = function() {
+                document.querySelector('#hello').style.color = 'red';
+            };
+            
+            document.querySelector('#blue').onclick = function() {
+                document.querySelector('#hello').style.color = 'blue';
+            };
+            
+            document.querySelector('#green').onclick = function() {
+                document.querySelector('#hello').style.color = 'green';
+            };
+            
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widmark Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background: url(../svg/line_light.svg), linear-gradient(to bottom, rgba(237, 229, 240, 0.5), #FFFFFF);
+            background-repeat: no-repeat, no-repeat;
+            background-position: top left 220px, top;
+        }
+        
+        h1 {
+            color: #232340;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            transition: color 0.2s;
+        }
+
+        .widmark-form {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .widmark-form input[type="number"] {
+            flex: 1;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .widmark-form input:focus {
+            border-color: #5468E7;
+        }
+
+        .widmark-form input[type="button"] {
+            padding: 12px 30px;
+            background-color:#5468E7;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .widmark-form input[type="button"]:hover {
+            background-color: #3a5ecf;
+            transform: scale(1.05); 
+        }
+
+        .back {
+            position: fixed;
+            padding: 30px;
+            top: 15px;
+            left: 15px;
+            transition: transform 0.2s;
+            transform: rotate(180deg);
+            font-size: 12px;
+            box-shadow: none;
+            background-color: transparent;
+        }
+        .back:hover {
+            transform: rotate(180deg) scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back"><img src="../svg/arrow_blue.svg"></a>
+
+    <h1>Widmark Calculator</h1>
+
+    <div class="widmark-form">
+        Weight: <input type="number" size="1" id="txtWeight" value="100">
+        <input type="button" size="2" onClick="WidmarkGo()" value="Calc">
+    </div>
+    
+    <div id="Widmark"></div>
+
+    <script>
+        function WidmarkGo() {
+            var N = document.getElementById("txtWeight").value;
+            var W = Widmark(N);
+            document.getElementById("Widmark").innerHTML = W;
+        }
+        
+        function Widmark(N) {
+            var m = N;
+            var A = 1.35 * m * 0.7;
+            var F = "<br>Cognac - <span class='red-text'>" + Math.round(A / 0.4) + " gr.</span><br>" +
+                    "Port wine - <span class='red-text'>" + Math.round(A / 0.19) + " gr.</span><br>" +
+                    "Dry wine - <span class='red-text'>" + Math.round(A / 0.12) + " gr.</span><br>" +
+                    "Beer - <span class='red-text'>" + Math.round(A / 0.06) + " gr.</span><br>";
+            return F;
+        }
+    </script>
+</body>
+</html>

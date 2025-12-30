@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 0 20px;
+            background: url(../svg/line_light.svg), linear-gradient(to bottom, rgba(237, 229, 240, 0.5), #FFFFFF);
+            background-repeat: no-repeat, no-repeat;
+            background-position: top left 220px, top;
+        }
+        
+        h1 {
+            color: #232340;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        #tasks {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+        
+        #tasks li {
+            color: #232340;
+            font-weight: 500;
+            margin: 15px 0;
+            padding: 12px;
+            background-color: white;
+            border: 2px solid #5468E7;
+            border-radius: 25px;
+            transition: transform 0.3s ease;
+        }
+        
+        form {
+            display: flex;
+            gap: 18px;
+        }
+        
+        #task {
+            flex: 1;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+        
+        #task:focus {
+            border-color: #5468E7;
+        }
+        
+        #submit {
+            padding: 12px 30px;
+            background-color:#5468E7;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        #submit:hover:not(:disabled) {
+            background-color: #3a5ecf;
+            transform: scale(1.05); 
+
+        }
+        
+        #submit:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .back {
+            position: fixed;
+            padding: 30px;
+            top: 15px;
+            left: 15px;
+            transition: transform 0.2s;
+            transform: rotate(180deg);
+            font-size: 12px;
+            box-shadow: none;
+            background-color: transparent;
+        }
+        .back:hover {
+            transform: rotate(180deg) scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back"><img src="../svg/arrow_blue.svg"></a>
+
+    <h1>To Do List ✔️</h1>
+    
+    <ul id="tasks">
+    </ul>
+    
+    <form id="todo-form">
+        <input 
+            id="task" 
+            autocomplete="off" 
+            size="33"
+            autofocus 
+            placeholder="New task" 
+            type="text"
+        >
+        <input 
+            id="submit" 
+            type="submit" 
+            value="Submit"
+        >
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            document.querySelector('#submit').disabled = true;
+            
+            document.querySelector('#task').onkeyup = () => {
+                const taskInput = document.querySelector('#task');
+                const submitButton = document.querySelector('#submit');
+                
+                if (taskInput.value.length > 0) {
+                    submitButton.disabled = false;
+                } else {
+                    submitButton.disabled = true;
+                }
+            };
+            
+            document.querySelector('form').onsubmit = () => {
+                const li = document.createElement('li');
+                li.innerHTML = "✏️ " + document.querySelector('#task').value;
+                
+                document.querySelector('#tasks').append(li);
+                
+                document.querySelector('#task').value = '';
+                
+                document.querySelector('#submit').disabled = true;
+                
+                return false;
+            };
+            
+        });
+    </script>
+</body>
+</html>

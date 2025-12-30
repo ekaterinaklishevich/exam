@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event-driven programming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background: url(../svg/line_light.svg), linear-gradient(to bottom, rgba(237, 229, 240, 0.5), #FFFFFF);
+            background-repeat: no-repeat, no-repeat;
+            background-position: top left 220px, top;
+        }
+        
+        #hello {
+            color: #232340;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            transition: color 0.2s;
+        }
+    
+        #color-change {
+            padding: 15px 15px;
+            font-size: 16px;
+            border-radius: 30px;
+            border-right: 13px solid #5468E7;
+            background-color: #5468E7;
+            color: white;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.2s ease, border-right-color 0.2s ease;
+        }
+
+        #color-change:hover {
+            background-color: #3f52c8;
+            border-right-color: #3f52c8;
+        }
+
+        .back {
+            position: fixed;
+            padding: 30px;
+            top: 15px;
+            left: 15px;
+            transition: transform 0.2s;
+            transform: rotate(180deg);
+            font-size: 12px;
+            box-shadow: none;
+            background-color: transparent;
+        }
+        .back:hover {
+            transform: rotate(180deg) scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back"><img src="../svg/arrow_blue.svg"></a>
+
+    <h1 id="hello">Hello!</h1>
+
+    <select id="color-change">
+        <option value="">Select color...</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="black">Black</option>
+        <option value="purple">Purple</option>
+        <option value="orange">Orange</option>
+    </select>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const colorDropdown = document.querySelector('#color-change');
+            
+            colorDropdown.onchange = function() {
+                const selectedColor = this.value;
+                
+                document.querySelector('#hello').style.color = selectedColor;
+                
+                console.log('Color changed to:', selectedColor);
+            };
+            
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Sounds Arrow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h2 {
+            color: #232340;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center; 
+            gap: 30px;             
+            margin-top: 30px;
+        }
+        button {
+            width: 180px;
+            height: 64px;
+            background-color: #5468E7;
+            color: #FFFFFF;
+            font-size: 18px;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+        button:hover {
+            transform: scale(1.1); 
+        }
+        #demo {
+            padding: 15px;
+            background: #f5f7fa;
+            border-radius: 12px;
+            min-height: 100px;
+        }
+        .back {
+            position: fixed;
+            padding: 30px;
+            top: 15px;
+            left: 15px;
+            transition: transform 0.2s;
+            transform: rotate(180deg);
+            font-size: 12px;
+            box-shadow: none;
+            background-color: transparent;
+        }
+
+        .back:hover {
+            transform: rotate(180deg) scale(1.1);
+        }
+
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back"><img src="../svg/arrow_blue.svg"></a>
+
+    <h2>Animal sounds with Arrow 🐈</h2>
+
+    <div id="demo"></div>
+    
+    <div class="buttons">
+        <button onclick="First()">Direct</button>
+        <button onclick="Second()">Shifted</button>
+    </div>
+
+     <script>
+        const cat = {
+            name: "Cat",
+            Say: () => "Meow!"
+        };
+        const dog = {
+            name: "Dog",
+            Say: () => "Woof!"
+        };
+        const donkey = {
+            name: "Donkey",
+            Say: () => "Hee-haw!"
+        };
+        const rooster = {
+            name: "Rooster",
+            Say: () => "Cock-a-doodle-doo!"
+        };
+        
+        const arr = [cat, dog, donkey, rooster];
+
+        const First = () => {
+            document.getElementById("demo").innerHTML = "";
+            arr.forEach(Go);
+        };
+
+        const Second = () => {
+            document.getElementById("demo").innerHTML = "";
+            arr.forEach(Go2);
+        };
+
+        const Go = (item, index) => {
+            document.getElementById("demo").innerHTML += 
+                index + ". " + item.name + 
+                " says " + item.Say() + "<br>";
+        };
+
+        const Go2 = (item, index, arr) => {
+            const k = index + 1 < arr.length ? (index + 1) : 0;
+            document.getElementById("demo").innerHTML += 
+                item.name + " says " + arr[k].Say() + "<br>";
+        };
+    </script>
+</body>
+</html>
